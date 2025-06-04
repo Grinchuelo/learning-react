@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { Board } from '/src/components/Board.jsx'
 import { Square } from '/src/components/Square.jsx'
-import { TURNS, WINNING_PATRONS } from '/src/constants.jsx'
 import { WinnerModal } from '/src/components/WinnerModal.jsx'
 import { RestartBtn } from '/src/components/RestartBtn.jsx'
+import { TURNS, WINNING_PATRONS } from '/src/constants.jsx'
 import confetti from 'canvas-confetti'
 import './App.css'
 
@@ -62,22 +63,7 @@ function App() {
   return (
     <main className='board'>
       <h1>Ta-Te-Ti</h1>
-      <section className='game'>
-        {
-          board.map((square, index) => {
-            return (
-              <Square 
-                key={index}
-                index={index}
-                updateBoard={updateBoard}
-              >
-                {square}
-              </Square>
-            )
-          })
-        }
-      </section>
-
+      <Board board={board} updateBoard={updateBoard}></Board>
       <section className='turn'>
         <Square isSelected={turn == TURNS.X}>
           {TURNS.X}
