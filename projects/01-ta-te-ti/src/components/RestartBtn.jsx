@@ -1,6 +1,6 @@
-export const RestartBtn = ({children, restartGame}) => {
+export const RestartBtn = ({children, restartGame, setBoard, setTurn, setWinner}) => {
     const handleClick = () => {
-        restartGame()
+        restartGame(setBoard, setTurn, setWinner)
     }
 
     return (

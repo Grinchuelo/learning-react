@@ -1,9 +1,9 @@
-import { X } from '/src/components/X.jsx'
-import { O } from '/src/components/O.jsx'
+/* import { X } from '/src/components/X.jsx'
+import { O } from '/src/components/O.jsx' */
 
 export const TURNS = {
-    X: <X />,
-    O: <O />
+    X: '✕',
+    O: 'O'
 }
 
 export const WINNING_PATRONS = [
