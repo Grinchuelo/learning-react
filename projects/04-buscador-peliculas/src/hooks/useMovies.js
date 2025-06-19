@@ -1,32 +1,28 @@
-import withoutMovies from "../mocks/no-results.json"
-import { useState } from "react"
-const apiKey = import.meta.env.VITE_API_KEY
+import { useState, useRef, useMemo, useEffect, useCallback } from "react"
+import { searchMovies } from "../services/movies"
 
-export function useMovies({ query }) {
-  const [responseMovies, setResponseMovies] = useState({})
-
-  const getMovies = () => {
-    if (query.length > 0) {
-      //setResponseMovies(withMovies)
-      fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${query}`)
-        .then(res => res.json())
-        .then(json => {
-          setResponseMovies(json)
-        })
-    } else {
-      setResponseMovies(withoutMovies)
-    }
-  }
-  const movies = responseMovies.Search || []
+export function useMovies({ query, sort }) {
+  const [movies, setMovies] = useState({})
+  const previousSearch = useRef(query)
   
-  const mappedMovies = movies.map(movie => (
-    {
-      id: movie.imdbID,
-      title: movie.Title,
-      year: movie.Year,
-      poster: movie.Poster
-    }
-  ))
+  const getMovies = useCallback(
+    async (query) => {
+      if (query == previousSearch.current ) return 
+      previousSearch.current = query
+      const newMovies = await searchMovies({ query })
+      setMovies(newMovies)
+    }, []) 
 
-  return { movies: mappedMovies, getMovies }
+  useEffect(() => {
+    console.log("efectivamente se ejecuto getMovies")
+  }, [movies])
+
+  const sortedMovies = useMemo(() => {
+    return sort
+    ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
+    : movies
+  }, [sort, movies])
+
+
+  return { movies: sortedMovies, getMovies }
 }

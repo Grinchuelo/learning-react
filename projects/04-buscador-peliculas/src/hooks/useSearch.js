@@ -1,21 +1,32 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 
 export function useSearch() {
   const [query, setQuery] = useState('')
   const [error, setError] = useState(null)
   const ref = useRef(true)
   let isFirstInput = ref.current
+  let timeOutID
 
-  const updateQuery = (e) => {
+  const debouncedGetMovies = useCallback(
+    (getMovies, newQuery) => {
+      clearTimeout(timeOutID)
+      timeOutID = setTimeout(() => {
+        getMovies(newQuery)
+      }, 600)
+    }, [])
+
+  const updateQuery = (e, getMovies) => {
     const newQuery = e.target.value
     if (newQuery.startsWith(' ')) return
+    
+    setQuery(newQuery)
 
-    setQuery(e.target.value)
+    debouncedGetMovies(getMovies, newQuery)
   }
 
   const handleSubmit = (e, getMovies) => {
     e.preventDefault()
-    getMovies()
+    getMovies(query)
   }
 
   useEffect(() => {

@@ -90,6 +90,14 @@ main ul li img {
     width: 100%;
 }
 
+label[for="sortByTitle"] {
+    display: flex;
+    gap: 1rem;
+
+    text-align: center;
+    font-size: 1.4rem;
+}
+
 .input_error {
     border: 1px solid rgb(170, 0, 0) !important;
 }
