@@ -1,6 +1,6 @@
-import withMovies from "../mocks/with-results.json"
 import withoutMovies from "../mocks/no-results.json"
-import { useCallback, useState } from "react"
+import { useState } from "react"
+const apiKey = import.meta.env.VITE_API_KEY
 
 export function useMovies({ query }) {
   const [responseMovies, setResponseMovies] = useState({})
@@ -8,7 +8,7 @@ export function useMovies({ query }) {
   const getMovies = () => {
     if (query.length > 0) {
       //setResponseMovies(withMovies)
-      fetch(`https://www.omdbapi.com/?apikey=4287ad07&s=${query}`)
+      fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${query}`)
         .then(res => res.json())
         .then(json => {
           setResponseMovies(json)
