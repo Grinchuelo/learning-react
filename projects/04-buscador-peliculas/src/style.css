@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: system-ui;
+    color: #d3d3d3;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+
+    font-size: 10px;
+}
+
+body {
+    background-color: #212444;
+}
+
+#app {
+    height: 100%;
+}
+
+header {
+    width: 100%;
+    height: 30rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+header form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+header form #idMovieName {
+    width: 32rem;
+    height: 4rem;
+    padding: 0 .8rem;
+
+    background-color: #0f1022;
+    border: none;
+    border-radius: .5rem;
+    outline: none;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #949494;
+}
+header form button {
+    width: 15rem;
+    height: 4rem;
+    padding: 0 .8rem;
+
+    background-color: #0f1022;
+    border: none;
+    border-radius: .5rem;
+    outline: none;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #949494;
+
+    cursor: pointer;
+}
+
+main {
+    width: 100%;
+    height: auto;
+    padding: 0 1rem;
+}
+
+main ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: 33rem;
+
+    gap: 2rem;
+}
+main ul li {
+    width: 20rem;
+
+    list-style: none;
+}
+main ul li img {
+    width: 100%;
+}
+
+.input_error {
+    border: 1px solid rgb(170, 0, 0) !important;
+}
