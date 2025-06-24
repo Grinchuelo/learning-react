@@ -13,10 +13,6 @@ export function useMovies({ query, sort }) {
       setMovies(newMovies)
     }, []) 
 
-  useEffect(() => {
-    console.log("efectivamente se ejecuto getMovies")
-  }, [movies])
-
   const sortedMovies = useMemo(() => {
     return sort
     ? [...movies].sort((a, b) => a.title.localeCompare(b.title))

@@ -8,19 +8,19 @@ export function useSearch() {
   let isFirstInput = ref.current
 
   const debouncedGetMovies = useCallback(
-    debounce((getMovies, newQuery) => {
-        getMovies(newQuery)
-    }, 600), []
+    debounce(async (getMovies, newQuery, disabledSort, setDisabledSort) => {
+        await getMovies(newQuery)
+        setDisabledSort(!disabledSort)
+    }, 400), []
   )
-    
 
-  const updateQuery = (e, getMovies) => {
+  const updateQuery = (e, getMovies, disabledSort, setDisabledSort) => {
     const newQuery = e.target.value
     if (newQuery.startsWith(' ')) return
     
     setQuery(newQuery)
 
-    debouncedGetMovies(getMovies, newQuery)
+    debouncedGetMovies(getMovies, newQuery, disabledSort, setDisabledSort)
   }
 
   const handleSubmit = (e, getMovies) => {
