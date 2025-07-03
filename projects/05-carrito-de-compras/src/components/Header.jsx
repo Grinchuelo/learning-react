@@ -1,10 +1,10 @@
 import { Filters } from './Filters.jsx'
 
-export function Header() {
+export function Header({ changeFilters }) {
   return (
     <header>
-      <h1>Carrito de compras🛒</h1>
-      <Filters />
+      <h1>React shop🛒</h1>
+      <Filters changeFilters={changeFilters} />
     </header>
   )
 }

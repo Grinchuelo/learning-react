@@ -1,0 +1,77 @@
+.cart {
+  width: 250px;
+  padding: 32px 0;
+
+  display: none;
+
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  
+  background: #000;
+
+  overflow: auto;
+
+  z-index: 100;
+}
+
+.cart img {
+  aspect-ratio: 1/1;
+  width: 100%;
+}
+
+.cart ul {
+  width: 100%;
+  padding: 0 1rem;
+
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.cart li {
+  width: 5rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 16px;
+}
+
+.cart footer {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart footer button {
+  padding: 8px;
+}
+
+.cart-btn {
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  position: fixed;
+  right: 8px;
+  top: 8px;
+  
+  background: #09f;
+  border-radius: 9999px;
+  
+  cursor: pointer;
+  transition: all .3s ease;
+  z-index: 9999;
+}
+
+.cart-btn:hover {
+  scale: 1.1;
+}
+
+.cart-btn ~ input:checked ~ .cart {
+  height: 100%;
+  display: block;
+}
